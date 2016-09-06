@@ -26,6 +26,7 @@
   },
 
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "http://services.aonaware.com/*"
   ]
 }
