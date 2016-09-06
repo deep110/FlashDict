@@ -2,14 +2,8 @@
   "manifest_version": 2,
 
   "name": "FlashDict",
-  "description": "This extension finds meaning of the selected word",
+  "description": "This extension find meanings of the selected word[s] instantly without opening the new tab and searching it manually. Usage: Just copy the text",
   "version": "1.0",
-
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html",
-    "default_title": "FlashDict"
-  },
 
   "commands": {
     "find" : {
@@ -25,8 +19,13 @@
     "persistent": false
   },
 
+  "icons": { 
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png" 
+  },
+
   "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
+    "activeTab"
   ]
 }

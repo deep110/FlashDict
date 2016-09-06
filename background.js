@@ -4,7 +4,7 @@ chrome.commands.onCommand.addListener(function (command) {
         chrome.tabs.executeScript( {
 		  	code: "window.getSelection().toString();"
 			}, function(selection) {
-				
+				console.log(selection.length);
 		  		alert(selection[0]);
 		});
     }
