@@ -19,6 +19,13 @@
     "persistent": false
   },
 
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
+      "run_at": "document_end"
+  }],
+
+
   "icons": { 
     "16": "images/icon16.png",
     "48": "images/icon48.png",
@@ -27,6 +34,7 @@
 
   "permissions": [
     "activeTab",
+    "tabs",
     "http://services.aonaware.com/*"
   ]
 }
