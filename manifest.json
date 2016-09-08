@@ -5,15 +5,6 @@
   "description": "This extension find meanings of the selected word[s] instantly without opening the new tab and searching it manually. Usage: Just copy the text",
   "version": "1.0",
 
-  "commands": {
-    "find" : {
-        "suggested_key": {
-             "default": "Ctrl+Q" 
-        },
-        "description": "Find the meaning"
-    }
-  },
-
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -34,7 +25,6 @@
 
   "permissions": [
     "activeTab",
-    "tabs",
     "http://services.aonaware.com/*"
   ]
 }

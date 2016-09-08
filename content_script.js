@@ -1,30 +1,31 @@
-
 document.body.addEventListener("dblclick", function(){
-	var selectedText = window.getSelection().toString();
-	console.log(selectedText);
+	var selectedText = window.getSelection().toString().trim();
+	chrome.runtime.sendMessage({message: selectedText});
 });
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender) {
-  	if(!sender.tab){
-  		var text = request.message;
-    	console.log("msg received is: "+text);
-  	}
-    
-  
-});
 
-function getMeaning(word){
-
-	var url = "http://services.aonaware.com/DictService/DictService.asmx/Define?word="+String(word);
-
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-            var a = xmlHttp.responseXML;
-            console.log(a);
-        }
+chrome.runtime.onMessage.addListener(function(request, sender) {
+    if(!sender.tab){
+    	var result = "<b>"+request.word +"</b><br>"+request.meaning;
+    	//result = result.replace(/(\r\n|\n|\r)/gm,"");
+    	console.log(result);
+    	showDialog(result);
     }
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send(null);
+});
+
+function showDialog(textContent){
+	var dialog = document.createElement("dialog");
+	dialog.textContent = textContent;
+	var button = document.createElement("button");
+	button.textContent = "Close";
+	dialog.appendChild(button);
+	button.addEventListener("click", function() {
+	  dialog.close();
+	});
+	document.body.appendChild(dialog);
+	dialog.showModal();
 }
+
+
+
+
