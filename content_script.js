@@ -6,16 +6,16 @@ document.body.addEventListener("dblclick", function(){
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
     if(!sender.tab){
-    	var result = "<b>"+request.word +"</b><br>"+request.meaning;
+    	var result = request.meaning;
     	//result = result.replace(/(\r\n|\n|\r)/gm,"");
-    	console.log(result);
-    	showDialog(result);
+    	//console.log(result);
+    	alert(result);
     }
 });
 
 function showDialog(textContent){
 	var dialog = document.createElement("dialog");
-	dialog.textContent = textContent;
+	dialog.innerHTML= textContent;
 	var button = document.createElement("button");
 	button.textContent = "Close";
 	dialog.appendChild(button);
@@ -24,6 +24,12 @@ function showDialog(textContent){
 	});
 	document.body.appendChild(dialog);
 	dialog.showModal();
+
+	window.onclick = function(event) {
+	  if (event.target == dialog) {
+	      dialog.close();
+	  }
+	}
 }
 
 

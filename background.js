@@ -1,3 +1,5 @@
+var result = null;
+
 chrome.extension.onMessage.addListener(function(request, sender){
  	getMeaning(request.message); 	
 });
@@ -15,8 +17,8 @@ function getMeaning(word){
 }
 
 function parseXmlData(word,xmlDoc){
-	var jsonResult = {};
-	jsonResult["word"] = word;
+	result = {};
+	result["word"] = word;
 
 	var x = xmlDoc.getElementsByTagName("Definition");
 	var meaning,alt = null;
@@ -43,8 +45,13 @@ function parseXmlData(word,xmlDoc){
 			meaning = alt;
 		}else meaning = "No meanings found";
 	}
-	jsonResult["meaning"] = meaning;
-	sendResult(jsonResult);
+	if(meaning.length > 500){
+		meaning = meaning.substring(0,500);
+		meaning = meaning +"..."
+	}
+	
+	result["meaning"] = meaning;
+	sendResult(result);
 }
 
 function sendResult(result){
