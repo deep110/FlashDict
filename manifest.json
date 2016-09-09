@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "FlashDict",
-  "description": "This extension find meanings of the selected word[s] instantly without opening the new tab and searching it manually. Usage: Just copy the text",
+  "description": "Just double click on a word and get its meaning instantly.",
   "version": "1.0",
 
   "background": {
