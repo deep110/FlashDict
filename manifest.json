@@ -3,7 +3,7 @@
 
   "name": "FlashDict",
   "description": "Just double click on any word and get its meaning instantly.",
-  "version": "1.0",
+  "version": "1.1.0",
 
   "background": {
     "scripts": ["background.js"],
