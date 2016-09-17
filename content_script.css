@@ -3,11 +3,11 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: black;
-	color: #fff;
+	background-color: #ffff99;
+	color: black;
 	text-align: center;
 	border-radius: 6px;
-	font-size: 16px;
+	font-size: 14px;
 	max-width: 300px;
 	z-index: 100;
 	padding: 10px;

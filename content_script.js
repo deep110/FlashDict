@@ -1,7 +1,4 @@
-// Add bubble to the top of the page.
-var bubbleDOM = document.createElement('div');
-bubbleDOM.setAttribute('class', 'selection_bubble');
-document.body.appendChild(bubbleDOM);
+var bubbleDOM = null;
 
 document.body.addEventListener("dblclick", function(e){
 	var selectedText = window.getSelection().toString().trim();
@@ -15,46 +12,34 @@ document.body.addEventListener("dblclick", function(e){
 
 // Close the bubble when we click on the screen.
 document.addEventListener('mousedown', function (e) {
-  bubbleDOM.style.visibility = 'hidden';
-  bubbleDOM.innerHTML = "";
+  if(bubbleDOM!=null && bubbleDOM.style.visibility == 'visible'){
+    bubbleDOM.style.visibility = 'hidden';
+    bubbleDOM.innerHTML = "";
+  }
 }, true);
 
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if(!sender.tab) {
-   var result = request.meaning;
-   bubbleDOM.innerHTML = result;
-    	// showDialog(result);
-    	//result = result.replace(/(\r\n|\n|\r)/gm,"");
-    	//console.log(result);
-    	// alert(result);
+    var result = request.meaning;
+    bubbleDOM.innerHTML = result;
+  	//result = result.replace(/(\r\n|\n|\r)/gm,"");
+  	// alert(result);
     }
   });
 
-function renderBubble(mouseX, mouseY) {
-  bubbleDOM.style.top = (mouseY + 20) + 'px';
-  bubbleDOM.style.left = (mouseX - 150) + 'px';
+function renderBubble(posX, posY) {
+  // Add bubble to the page.
+  if(bubbleDOM==null){
+    bubbleDOM = document.createElement('div');
+    bubbleDOM.setAttribute('class', 'selection_bubble');
+    document.body.appendChild(bubbleDOM);
+  }
+  
+  bubbleDOM.style.top = (posY + 20) + 'px';
+  bubbleDOM.style.left = (posX - 150) + 'px';
   bubbleDOM.style.visibility = 'visible';
 }
-
-// function showDialog(textContent){
-// 	var dialog = document.createElement("dialog");
-// 	dialog.innerHTML= textContent;
-// 	var button = document.createElement("button");
-// 	button.textContent = "Close";
-// 	dialog.appendChild(button);
-// 	button.addEventListener("click", function() {
-// 	  dialog.close();
-// 	});
-// 	document.body.appendChild(dialog);
-// 	dialog.showModal();
-
-// 	window.onclick = function(event) {
-// 	  if (event.target == dialog) {
-// 	      dialog.close();
-// 	  }
-// 	}
-// }
 
 
 
