@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "FlashDict",
-  "description": "Just double click on a word and get its meaning instantly.",
+  "description": "Just double click on any word and get its meaning instantly.",
   "version": "1.0",
 
   "background": {
