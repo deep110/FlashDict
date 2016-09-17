@@ -8,7 +8,7 @@ Sometimes, do you feel too lazy to search for a difficult word's meaning you enc
 1. First clone the repo or download the source code. If you have a zip file, extract its contents.
 2. Just drag the folder to extensions [page](chrome://extensions/). If its not allowing you to add the extension, just turn the developer mode on.
 <br>
-![developer_options](/static/01.jpg?raw=true)
+![developer_options](/static/01.png?raw=true)
 3. Now you are ready to use the extension. Just double click on any word and voila you are good to go.
 
 ## Contributing
@@ -20,8 +20,8 @@ Any contribution is appreciated.
 
 ## Future Improvements
 * Replace alert dialog with a custom dialog hovering over the word.
-* The dictionary API used does not handle plurals efficiently, so need to integrate a library with good database to remove plurals and unwanted words like (peaceful-ly -> peaceful).
-* In case of no meanings found showing search result from wikipedia.
+* The dictionary API used does not handle plurals efficiently, so need to integrate a library with good database to remove plurals and unwanted letters from words like (peaceful-ly -> peaceful).
+* In case of no meanings found, showing search result from wikipedia using [MediaWiki Api](https://www.mediawiki.org/wiki/API:Main_page).
 
 ## License
 
