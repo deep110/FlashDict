@@ -1,5 +1,5 @@
 # FlashDict
-Sometimes, do you feel too lazy to search for a difficult word's meaning you encounter while reading a article on web. Then this extension can really solve your problem. It can get the meanings of the selected word instantly without opening the new tab and searching it manually.
+Sometimes, do you feel too lazy to search for a difficult word's meaning you encounter while reading an article on web, then this extension can really solve your problem. You can get the meanings of the selected word instantly without opening the new tab and searching it manually.
 
 ## Preview
 ![preview](/static/02.png?raw=true)
