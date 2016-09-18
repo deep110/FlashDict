@@ -7,11 +7,9 @@ $box = $(".box_overlay");
 $("body").dblclick(function(e){
   var selectedText = window.getSelection().toString().trim();
   if (selectedText.length > 0) {
-    chrome.runtime.sendMessage({message: selectedText});
-    console.log("left3:" + $(window).scrollLeft() + " , top3:" + $(window).scrollTop());
     $x = $(window).scrollLeft() + e.clientX;
     $y = $(window).scrollTop() + e.clientY;
-    $box.addClass("visible");
+    chrome.runtime.sendMessage({message: selectedText});
   }
 });
 
@@ -30,11 +28,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 });
 
 $box.bind("DOMSubtreeModified",function(){
-  // $a = $(this).offset();
-  console.log("left1:"+ $x + " , top1:" + $y);
+  $box.addClass("visible");
   $x -= $(this).width()/2;
   $y -= $(this).height() + 50;
-  console.log("left2:"+ $x + " , top2:" + $y);
   if($x<0)
     $x=0;
   if($y<0)
