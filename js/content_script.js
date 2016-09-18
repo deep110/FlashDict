@@ -23,8 +23,9 @@ $("body :not(.box_overlay)").on("click", function () {
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if(!sender.tab) {
-   var result = request.meaning;
-   $box.html(result);
+    if(request.active) {
+      $box.html(request.meaning);
+   }
  }
 });
 

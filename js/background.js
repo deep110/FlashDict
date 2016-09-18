@@ -1,19 +1,37 @@
 var result = null;
+var active = true;
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+	if(active) {
+		chrome.browserAction.setTitle({title:"Click to Enable"});
+		chrome.browserAction.setIcon({path:"images/icon48_disabled.png"});
+	} else {
+		chrome.browserAction.setTitle({title:"Click to Disable"});
+		chrome.browserAction.setIcon({path:"images/icon48.png"});
+	}
+	active = !active;
+})
 
 chrome.extension.onMessage.addListener(function(request, sender){
- 	getMeaning(request.message); 	
+	if(active) {
+		getMeaning(request.message); 	
+	} else {
+		result = {};
+		result["active"] = active;
+		sendResult(result);
+	}
 });
 
 function getMeaning(word){
 	var url = "http://services.aonaware.com/DictService/DictService.asmx/Define?word="+String(word);
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-            parseXmlData(word,xmlHttp.responseXML);      
-        }
-    }
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send(null);
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() { 
+		if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+			parseXmlData(word,xmlHttp.responseXML);      
+		}
+	}
+	xmlHttp.open("GET", url, true);
+	xmlHttp.send(null);
 }
 
 function parseXmlData(word,xmlDoc){
@@ -51,12 +69,13 @@ function parseXmlData(word,xmlDoc){
 	}
 	
 	result["meaning"] = meaning;
+	result["active"] = active;
 	sendResult(result);
 }
 
 function sendResult(result){
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-	  	chrome.tabs.sendMessage(tabs[0].id, result);
+		chrome.tabs.sendMessage(tabs[0].id, result);
 	});
 }
 

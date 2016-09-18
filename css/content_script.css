@@ -12,16 +12,16 @@
 	opacity: 0;
 	padding: 0;
 	height: 0;
-	transition: 0.8s;
+	width: 100%;
+	transition: height 0.8s,opacity 0.5s,left 0.5s,top 0.5s;
 }
 .box_overlay.visible {
 	opacity: 0.8;
 	height: auto;
-	width: 100%;
 	padding: 10px;
 }
 .box_overlay.visible:hover {
-	opacity: 0.9;
+	opacity: 0.95;
 }
 .box_overlay.visible::selection {
 	background: #ffb7b7;
