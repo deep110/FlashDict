@@ -1,61 +1,42 @@
+var $x=0,$y=0;
 // Add bubble to the top of the page.
-var bubbleDOM = document.createElement('div');
-bubbleDOM.setAttribute('class', 'selection_bubble');
-document.body.appendChild(bubbleDOM);
+var $box = $("<div>", {"class": "box_overlay"});
+$("body").append($box);
+$box = $(".box_overlay");
 
-document.body.addEventListener("dblclick", function(e){
-	var selectedText = window.getSelection().toString().trim();
-	if (selectedText.length > 0) {
+$("body").dblclick(function(e){
+  var selectedText = window.getSelection().toString().trim();
+  if (selectedText.length > 0) {
     chrome.runtime.sendMessage({message: selectedText});
-    var y_pos = document.body.scrollTop + e.clientY;
-    var x_pos = document.body.scrollLeft + e.clientX;
-    renderBubble(x_pos, y_pos);
+    console.log("left3:" + $(window).scrollLeft() + " , top3:" + $(window).scrollTop());
+    $x = $(window).scrollLeft() + e.clientX;
+    $y = $(window).scrollTop() + e.clientY;
+    $box.addClass("visible");
   }
 });
 
 // Close the bubble when we click on the screen.
-document.addEventListener('mousedown', function (e) {
-  bubbleDOM.style.visibility = 'hidden';
-  bubbleDOM.innerHTML = "";
-}, true);
-
+$("body :not(.box_overlay)").on("click", function () {
+  $box.removeClass("visible");
+  $box.html("");
+});
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if(!sender.tab) {
    var result = request.meaning;
-   bubbleDOM.innerHTML = result;
-    	// showDialog(result);
-    	//result = result.replace(/(\r\n|\n|\r)/gm,"");
-    	//console.log(result);
-    	// alert(result);
-    }
-  });
+   $box.html(result);
+ }
+});
 
-function renderBubble(mouseX, mouseY) {
-  bubbleDOM.style.top = (mouseY + 20) + 'px';
-  bubbleDOM.style.left = (mouseX - 150) + 'px';
-  bubbleDOM.style.visibility = 'visible';
-}
-
-// function showDialog(textContent){
-// 	var dialog = document.createElement("dialog");
-// 	dialog.innerHTML= textContent;
-// 	var button = document.createElement("button");
-// 	button.textContent = "Close";
-// 	dialog.appendChild(button);
-// 	button.addEventListener("click", function() {
-// 	  dialog.close();
-// 	});
-// 	document.body.appendChild(dialog);
-// 	dialog.showModal();
-
-// 	window.onclick = function(event) {
-// 	  if (event.target == dialog) {
-// 	      dialog.close();
-// 	  }
-// 	}
-// }
-
-
-
-
+$box.bind("DOMSubtreeModified",function(){
+  // $a = $(this).offset();
+  console.log("left1:"+ $x + " , top1:" + $y);
+  $x -= $(this).width()/2;
+  $y -= $(this).height() + 50;
+  console.log("left2:"+ $x + " , top2:" + $y);
+  if($x<0)
+    $x=0;
+  if($y<0)
+    $y += $(this).height() + 60;
+  $(this).offset({top:($y>0?$y:0),left:$x});
+});

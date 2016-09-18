@@ -1,5 +1,4 @@
-.selection_bubble {
-	visibility: hidden;
+.box_overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -10,5 +9,20 @@
 	font-size: 16px;
 	max-width: 300px;
 	z-index: 100;
+	opacity: 0;
+	padding: 0;
+	height: 0;
+	transition: 0.8s;
+}
+.box_overlay.visible {
+	opacity: 0.8;
+	height: auto;
+	width: 100%;
 	padding: 10px;
+}
+.box_overlay.visible:hover {
+	opacity: 0.9;
+}
+.box_overlay.visible::selection {
+	background: #ffb7b7;
 }
