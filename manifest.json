@@ -6,17 +6,20 @@
   "version": "1.1.0",
 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["js/background.js"],
     "persistent": false
   },
 
   "content_scripts": [{
       "matches": ["<all_urls>"],
-      "css": ["content_script.css"],
-      "js": ["content_script.js"],
+      "css": ["css/content_script.css"],
+      "js": ["js/jquery-1.12.4.min.js","js/content_script.js"],
       "run_at": "document_end"
   }],
 
+  "browser_action": {
+    "default_icon": "images/icon48.png",
+    "default_title": "Click to Disable" },
 
   "icons": { 
     "16": "images/icon16.png",

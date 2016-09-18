@@ -1,0 +1,28 @@
+.box_overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #ffff99;
+	color: black;
+	text-align: center;
+	border-radius: 6px;
+	font-size: 14px;
+	max-width: 300px;
+	z-index: 1000;
+	opacity: 0;
+	padding: 0;
+	height: 0;
+	width: 100%;
+	transition: height 0.8s,opacity 0.5s,left 0.5s,top 0.5s;
+}
+.box_overlay.visible {
+	opacity: 0.9;
+	height: auto;
+	padding: 10px;
+}
+.box_overlay.visible:hover {
+	opacity: 1;
+}
+.box_overlay.visible::selection {
+	background: #ffb7b7;
+}
