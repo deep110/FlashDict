@@ -1,4 +1,5 @@
 var $x=0,$y=0;
+
 // Add bubble to the top of the page.
 var $box = $("<div>", {"class": "box_overlay"});
 $("body").append($box);
