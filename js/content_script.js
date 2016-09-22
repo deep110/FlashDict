@@ -8,6 +8,7 @@ $box = $(".box_overlay");
 $("body").dblclick(function(e){
   var selectedText = window.getSelection().toString().trim();
   if (selectedText.length > 0) {
+    selectedText = pluralize(selectedText,1);
     $x = $(window).scrollLeft() + e.clientX;
     $y = $(window).scrollTop() + e.clientY;
     chrome.runtime.sendMessage({message: selectedText});
@@ -24,8 +25,8 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   if(!sender.tab) {
     if(request.active) {
       $box.html(request.meaning);
-   }
- }
+    }
+  }
 });
 
 $box.bind("DOMSubtreeModified",function(){

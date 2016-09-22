@@ -19,8 +19,7 @@ Please fork this repository and contribute back using
 Any contribution is appreciated.
 
 ## Future Improvements
-* Styling the custom dialog hovering over the word.
-* The dictionary API used does not handle plurals efficiently, so need to integrate a library with good database to remove plurals and unwanted letters from words like (peaceful-ly -> peaceful).
+* Showing "more" link at end which will open new tab with same query on clicking it.
 * In case of no meanings found, showing search result from wikipedia using [MediaWiki Api](https://www.mediawiki.org/wiki/API:Main_page).
 
 ## License
