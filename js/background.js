@@ -14,7 +14,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 chrome.extension.onMessage.addListener(function(request, sender){
 	if(active) {
-		getMeaning(request.message); 	
+		getMeaning(request.message);
 	} else {
 		result = {};
 		result["active"] = active;
@@ -62,12 +62,7 @@ function parseXmlData(word,xmlDoc){
 		if(alt!=null) {
 			meaning = alt;
 		}else meaning = "No meanings found";
-	}
-	if(meaning.length > 500){
-		meaning = meaning.substring(0,500);
-		meaning = meaning +"..."
-	}
-	
+	}	
 	result["meaning"] = meaning;
 	result["active"] = active;
 	sendResult(result);
