@@ -7,8 +7,9 @@ Sometimes, do you feel too lazy to search for a difficult word's meaning you enc
 ## Usage
 1. First clone the repo or download the source code. If you have a zip file, extract its contents.
 2. Just drag the folder to extensions [page](chrome://extensions/). If its not allowing you to add the extension, just turn the developer mode on.
-<br>
+
 ![developer_options](/static/01.png?raw=true)
+
 3. Now you are ready to use the extension. Just double click on any word and voila you are good to go.
 
 ## Contributing
